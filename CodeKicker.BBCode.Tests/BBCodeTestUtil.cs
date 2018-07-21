@@ -3,13 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using CodeKicker.BBCode;
 using CodeKicker.BBCode.SyntaxTree;
+#if false
 using Microsoft.Pex.Framework;
+#endif
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Tests2
 {
     public static class BBCodeTestUtil
     {
+#if false
         public static SequenceNode CreateRootNode(BBTag[] allowedTags)
         {
             var node = new SequenceNode();
@@ -62,8 +65,9 @@ namespace Tests2
                 node.SubNodes.Add(subNode);
             }
         }
+#endif
 
-        public static BBCodeParser GetParserForTest(ErrorMode errorMode, bool includePlaceholder, BBTagClosingStyle listItemBBTagClosingStyle, bool enableIterationElementBehavior)
+		public static BBCodeParser GetParserForTest(ErrorMode errorMode, bool includePlaceholder, BBTagClosingStyle listItemBBTagClosingStyle, bool enableIterationElementBehavior)
         {
             return new BBCodeParser(errorMode, null, new[]
                 {
@@ -115,11 +119,13 @@ namespace Tests2
                 return false;
             }
         }
+#if false
 
         public static SequenceNode GetAnyTree()
         {
             var parser = GetParserForTest(PexChoose.EnumValue<ErrorMode>("errorMode"), true, PexChoose.EnumValue<BBTagClosingStyle>("listItemBBTagClosingStyle"), false);
             return CreateRootNode(parser.Tags.ToArray());
         }
+#endif
     }
 }

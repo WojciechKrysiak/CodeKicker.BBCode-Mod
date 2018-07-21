@@ -3,16 +3,21 @@ using System.Text;
 using System.Collections.Generic;
 using System.Linq;
 using CodeKicker.BBCode.SyntaxTree;
+#if false
 using Microsoft.Pex.Framework;
+#endif
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Tests2;
 
 namespace CodeKicker.BBCode.Tests
 {
     [TestClass]
+#if false
     [PexClass(typeof(SyntaxTreeVisitor), MaxRuns = 1000000000, MaxRunsWithoutNewTests = 1000000000, Timeout = 1000000000, MaxExecutionTreeNodes = 1000000000, MaxBranches = 1000000000, MaxWorkingSet = 1000000000, MaxConstraintSolverMemory = 1000000000, MaxStack = 1000000000, MaxConditions = 1000000000)]
-    public partial class SyntaxTreeVisitorTest
+#endif
+	public partial class SyntaxTreeVisitorTest
     {
+#if false
         [PexMethod]
         public void DefaultVisitorModifiesNothing()
         {
@@ -37,7 +42,7 @@ namespace CodeKicker.BBCode.Tests
             Assert.IsTrue(tree != tree2);
         }
 
-        class IdentitiyModificationSyntaxTreeVisitor : SyntaxTreeVisitor
+		class IdentitiyModificationSyntaxTreeVisitor : SyntaxTreeVisitor
         {
             protected internal override SyntaxTreeNode Visit(TextNode node)
             {
@@ -58,19 +63,20 @@ namespace CodeKicker.BBCode.Tests
                 return baseResult.SetSubNodes(baseResult.SubNodes.ToList());
             }
         }
+#endif
 
-        class TextModificationSyntaxTreeVisitor : SyntaxTreeVisitor
+		class TextModificationSyntaxTreeVisitor : SyntaxTreeVisitor
         {
-            protected internal override SyntaxTreeNode Visit(TextNode node)
+            protected override SyntaxTreeNode Visit(TextNode node)
             {
                 return new TextNode(node.Text + "x", node.HtmlTemplate);
             }
-            protected internal override SyntaxTreeNode Visit(SequenceNode node)
+            protected override SyntaxTreeNode Visit(SequenceNode node)
             {
                 var baseResult = base.Visit(node);
                 return baseResult.SetSubNodes(baseResult.SubNodes.Concat(new[] { new TextNode("y") }));
             }
-            protected internal override SyntaxTreeNode Visit(TagNode node)
+            protected override SyntaxTreeNode Visit(TagNode node)
             {
                 var baseResult = base.Visit(node);
                 return baseResult.SetSubNodes(baseResult.SubNodes.Concat(new[] { new TextNode("z") }));

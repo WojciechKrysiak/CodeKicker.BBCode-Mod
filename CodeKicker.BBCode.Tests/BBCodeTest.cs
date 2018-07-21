@@ -3,17 +3,22 @@ using System.Text;
 using System.Collections.Generic;
 using System.Linq;
 using CodeKicker.BBCode.SyntaxTree;
+#if false
 using Microsoft.Pex.Framework;
+#endif
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Tests2;
 
 namespace CodeKicker.BBCode.Tests
 {
     [TestClass]
+#if false
     [PexClass(MaxRuns = 1000000000, MaxRunsWithoutNewTests = 1000000000, Timeout = 1000000000, MaxExecutionTreeNodes = 1000000000, MaxBranches = 1000000000, MaxWorkingSet = 1000000000, MaxConstraintSolverMemory = 1000000000, MaxStack = 1000000000, MaxConditions = 1000000000)]
+#endif
     public partial class BBCodeTest
     {
-        [PexMethod]
+#if false
+		[PexMethod]
         public void DefaultParserWellconfigured([PexAssumeNotNull] string input)
         {
             try
@@ -60,7 +65,7 @@ namespace CodeKicker.BBCode.Tests
             var text2 = unescaped.ToText();
             Assert.AreEqual(text, text2);
         }
-
+#endif
         static BBCodeParser GetSimpleParser()
         {
             return new BBCodeParser(new List<BBTag>());
@@ -92,8 +97,8 @@ namespace CodeKicker.BBCode.Tests
             var tree2 = BBCode.ReplaceTextSpans(tree1, getTextSpansToReplace ?? (txt => new TextSpanReplaceInfo[0]), tagFilter);
             Assert.AreEqual(expected, tree2.ToBBCode());
         }
-
-        [PexMethod]
+#if false
+		[PexMethod]
         public void ReplaceTextSpans_WhenNoModifications_TreeIsPreserved()
         {
             var tree1 = BBCodeTestUtil.GetAnyTree();
@@ -149,7 +154,7 @@ namespace CodeKicker.BBCode.Tests
             var bbCode = tree2.ToBBCode();
             PexAssert.TrueForAll(chosenTexts, s => bbCode.Contains(s));
         }
-
+#endif
         class TextAssertVisitor : SyntaxTreeVisitor
         {
             Action<string> assertFunction;
@@ -159,7 +164,7 @@ namespace CodeKicker.BBCode.Tests
                 this.assertFunction = assertFunction;
             }
 
-            protected internal override SyntaxTreeNode Visit(TextNode node)
+            protected override SyntaxTreeNode Visit(TextNode node)
             {
                 assertFunction(node.Text);
                 return node;

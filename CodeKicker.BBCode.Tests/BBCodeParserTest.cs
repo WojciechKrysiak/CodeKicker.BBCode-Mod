@@ -3,14 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using CodeKicker.BBCode;
 using CodeKicker.BBCode.SyntaxTree;
+#if false
 using Microsoft.Pex.Framework;
+#endif
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Tests2
 {
     [TestClass]
+#if false
     [PexClass(MaxRuns = 1000000000, MaxRunsWithoutNewTests = 1000000000, Timeout = 1000000000, MaxExecutionTreeNodes = 1000000000, MaxBranches = 1000000000, MaxWorkingSet = 1000000000, MaxConstraintSolverMemory = 1000000000, MaxStack = 1000000000, MaxConditions = 1000000000)]
-    public partial class BBCodeParserTest
+#endif
+	public partial class BBCodeParserTest
     {
         [TestMethod]
         public void Test1()
@@ -133,9 +137,9 @@ namespace Tests2
             Assert.AreEqual("<span style=\"color:red;font-family:Arial;\">abc</span>", parser.ToHtml("[font color=red font=Arial]abc[/font]"));
             Assert.AreEqual("<span style=\"color:red;\">abc</span>", parser.ToHtml("[font color=red]abc[/font]"));
         }
-
-        //the parser may never ever throw an exception other that BBCodeParsingException for any non-null input
-        [PexMethod]
+#if false
+		//the parser may never ever throw an exception other that BBCodeParsingException for any non-null input
+		[PexMethod]
         public void NoCrash(ErrorMode errorMode, [PexAssumeNotNull] string input, BBTagClosingStyle listItemBbTagClosingStyle, out string output)
         {
             PexAssume.EnumIsDefined(errorMode);
@@ -279,6 +283,7 @@ namespace Tests2
 
             AssertTextNodesNotSplit(tree);
         }
+#endif
 
         static void AssertTextNodesNotSplit(SyntaxTreeNode node)
         {
@@ -303,15 +308,15 @@ namespace Tests2
         {
             return BBCodeTestUtil.GetParserForTest(errorMode, true, listItemBbTagClosingStyle, enableIterationElementBehavior).ToHtml(bbCode).Replace("\r", "").Replace("\n", "<br/>");
         }
-
-        [PexMethod]
+#if false
+		[PexMethod]
         public void ToTextDoesNotCrash([PexAssumeNotNull] string input, out string text)
         {
             var parser = BBCodeTestUtil.GetParserForTest(ErrorMode.ErrorFree, true, BBTagClosingStyle.AutoCloseElement, false);
             text = parser.ParseSyntaxTree(input).ToText();
             Assert.IsTrue(text.Length <= input.Length);
         }
-
+#endif
         [TestMethod]
         public void StrictErrorMode()
         {

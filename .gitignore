@@ -8,3 +8,4 @@ TestResults
 #VS local outputs
 *.suo
 *.csproj.user
+/.vs

@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if false
+using System;
 using System.Text;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,3 +33,4 @@ namespace CodeKicker.BBCode.Tests
         }
     }
 }
+#endif
