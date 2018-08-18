@@ -2,20 +2,28 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <!-- v4.5.2 => net452. v4.6 => net46, etc.-->
-    <TargetFramework>netstandard20</TargetFramework>
+    <TargetFrameworks>netstandard20;net40;net45;net46</TargetFrameworks>
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
     <Company>http://codekicker.de/</Company>
     <Title>CodeKicker.BBCode</Title>
-    <Description>This is our BBCode-implementation at http://codekicker.de/. It is extremely stable as ist has been tested with Microsoft Pex. Is is also quite performant.</Description>
+    <Description>This is our BBCode-implementation at http://codekicker.de/. It is extremely stable as ist has been tested with Microsoft Pex. Is is also quite performant. This package contains modifications from https://github.com/Pablissimo/CodeKicker.BBCode-Mod.</Description>
     <Product>CodeKicker.BBCode</Product>
     <Copyright>In order to use this library, we require a link to http://codekicker.de/ from you. Licensed unter the Creative Commons Attribution 3.0 Licence: http://creativecommons.org/licenses/by/3.0/."</Copyright>
     <Version>5.0.0.0</Version>
     <FileVersion>5.0.0.0</FileVersion>
+    <PackageLicenseUrl>https://github.com/WojciechKrysiak/CodeKicker.BBCode-Mod/blob/master/LICENCE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/WojciechKrysiak/CodeKicker.BBCode-Mod/</PackageProjectUrl>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageTags>bbcode codekicker parser netstandard netcore</PackageTags>
+    <PackageId>CodeKicker.BBCode-NETStandard</PackageId>
+   
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="Properties\" />
   </ItemGroup>
- 
+  <ItemGroup>
+    <Reference Include="System.Web" />
+  </ItemGroup>
   
  
 </Project>
